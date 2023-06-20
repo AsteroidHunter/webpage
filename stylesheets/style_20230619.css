@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 50%;
-    text-align: center;
+    text-align: justify;
     box-sizing: border-box;
     padding: 20px;
 }
@@ -22,7 +22,6 @@ img {
     max-height: 300px; /* Change this to desired value */
     object-fit: cover; /* This makes sure your image keeps its aspect ratio */
 }
-
 
 .links {
     margin-top: 20px;
