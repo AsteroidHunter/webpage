@@ -10,7 +10,7 @@ body {
 
 .container {
     width: 50%;
-    text-align: justify;
+    text-align: center;
     box-sizing: border-box;
     padding: 20px;
 }
