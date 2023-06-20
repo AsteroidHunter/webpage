@@ -1,0 +1,34 @@
+body {
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    max-width: 300px;
+    max-height: 300px; /* Change this to desired value */
+    object-fit: cover; /* This makes sure your image keeps its aspect ratio */
+}
+
+
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: blue;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
