@@ -1,0 +1,415 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: #ffffff; /* White background for borders */
+    color: #333;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Painting background aligned with welcome text */
+body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 60px; /* Align left edge with welcome text */
+    transform: translateY(-50%); /* Only center vertically */
+    width: calc(100vw - 120px); /* Leave 60px border on each side */
+    height: calc(100vh - 120px); /* Leave 60px border on top/bottom */
+    background: url('../assets/entering_stargate_Mead91.jpg') left center/contain no-repeat;
+    z-index: -3;
+}
+
+/* Light overlay for better text visibility */
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 60px; /* Match background position */
+    transform: translateY(-50%); /* Only center vertically */
+    width: calc(100vw - 120px);
+    height: calc(100vh - 120px);
+    background: rgba(255, 255, 255, 0.1); /* Very light overlay */
+    z-index: -2;
+}
+
+/* Welcome Text */
+.welcome-text {
+    position: fixed;
+    top: 20px;
+    left: 60px; /* Simple fixed positioning that aligns with background left edge */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1000;
+    text-shadow: 2px 2px 0px #fff, -1px -1px 0px #fff, 1px -1px 0px #fff, -1px 1px 0px #fff;
+}
+
+/* Info icon for painting details */
+.info-icon {
+    position: fixed;
+    bottom: 80px; /* Simple bottom positioning */
+    left: 60px; /* Align with welcome text positioning */
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.info-icon:hover {
+    background: rgba(200, 200, 255, 0.95);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Info popup */
+.info-popup {
+    position: fixed;
+    bottom: 130px; /* Above the info icon */
+    left: 60px; /* Align with info icon */
+    background: rgba(255, 255, 255, 0.98);
+    border: 3px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 280px; /* Reduced to prevent overflow */
+    max-height: 200px; /* Limit height */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    line-height: 1.6;
+    color: #333;
+    display: none;
+    overflow: hidden; /* Prevent internal scrollbars */
+}
+
+.info-popup .artist-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.info-popup .artwork-title {
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.info-popup .artwork-year {
+    color: #666;
+}
+
+/* Pastel background effect */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -2;
+}
+
+.matrix-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(221, 160, 221, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(173, 216, 230, 0.2) 0%, transparent 50%);
+    animation: pulse 4s ease-in-out infinite alternate;
+}
+
+/* Animated pastel sparkles */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.stars::before, .stars::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #ffb6c1;
+    border-radius: 50%;
+    box-shadow: 
+        100px 200px #dda0dd, 200px 100px #add8e6, 300px 300px #ffe4e1,
+        400px 150px #f0fff0, 500px 250px #ffefd5, 600px 50px #e6e6fa,
+        700px 200px #fff0f5, 800px 100px #f5fffa, 900px 300px #fdf5e6,
+        50px 350px #f0f8ff, 150px 450px #fffacd, 250px 150px #e0ffff,
+        350px 50px #faf0e6, 450px 350px #fff8dc, 550px 150px #f8f8ff,
+        650px 250px #ffefd5, 750px 350px #f0fff0, 850px 50px #e6e6fa,
+        950px 150px #fff0f5, 1050px 250px #f5fffa;
+    animation: stars 20s linear infinite;
+}
+
+.stars::after {
+    width: 2px;
+    height: 2px;
+    animation-duration: 30s;
+    background: #dda0dd;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3D Robot Container */
+.robot-container {
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    z-index: 10;
+}
+
+#robot-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Choice buttons styling */
+.choice-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.choice-btn {
+    padding: 0.75rem 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid;
+    text-align: center;
+    color: #333;
+}
+
+.recruiter-btn {
+    background: linear-gradient(45deg, #ffb6c1, #ffc0cb);
+    border-color: #ff69b4;
+}
+
+.recruiter-btn:hover {
+    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+.friend-btn {
+    background: linear-gradient(45deg, #add8e6, #87ceeb);
+    border-color: #4169e1;
+}
+
+.friend-btn:hover {
+    background: linear-gradient(45deg, #4169e1, #0000ff);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(65, 105, 225, 0.3);
+}
+
+.random-btn {
+    background: linear-gradient(45deg, #98fb98, #90ee90);
+    border-color: #32cd32;
+}
+
+.random-btn:hover {
+    background: linear-gradient(45deg, #32cd32, #228b22);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(50, 205, 50, 0.3);
+}
+
+.choice-btn:active {
+    transform: translateY(0);
+}
+
+/* Speech bubble */
+.speech-bubble {
+    position: fixed;
+    top: calc(20% + 10px); /* Moved down 10px from original position */
+    right: 50px; /* Position on the right side */
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-width: 400px;
+    min-width: 300px;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.bubble-content p {
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 12px;
+}
+
+.choice-container {
+    background: rgba(240, 240, 240, 0.9);
+    border: 2px solid #666;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+@keyframes stars {
+    0% { transform: translateY(-100vh); }
+    100% { transform: translateY(100vh); }
+}
+
+@keyframes glitch-1 {
+    0%, 14%, 15%, 49%, 50%, 99%, 100% {
+        transform: translate(0);
+    }
+    1%, 2% {
+        transform: translate(-2px, -1px);
+    }
+    16%, 49% {
+        transform: translate(1px, 0);
+    }
+}
+
+@keyframes glitch-2 {
+    0%, 20%, 21%, 62%, 63%, 99%, 100% {
+        transform: translate(0);
+    }
+    21%, 22% {
+        transform: translate(2px, 1px);
+    }
+    63%, 64% {
+        transform: translate(-1px, -2px);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .welcome-text {
+        left: 20px; /* Simple left positioning on mobile */
+        font-size: 18px; /* Smaller text for mobile */
+        top: 15px;
+    }
+    
+    .info-icon {
+        left: 20px; /* Simple positioning on mobile */
+        bottom: 60px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .info-popup {
+        left: 20px;
+        bottom: 105px;
+        max-width: calc(100vw - 40px); /* Full width minus margins */
+        font-size: 9px;
+    }
+    
+    .robot-container {
+        width: 250px;
+        height: 250px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .speech-bubble {
+        right: 20px;
+        top: calc(25% + 10px); /* Mobile positioning moved down 10px */
+        max-width: calc(100vw - 40px);
+        min-width: 250px;
+        font-size: 10px;
+        padding: 1rem;
+    }
+    
+    .bubble-content p {
+        font-size: 10px;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    
+    .choice-btn {
+        font-size: 9px;
+        padding: 0.6rem 1rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .choice-buttons {
+        width: 100%;
+        gap: 0.5rem;
+    }
+}
+
+/* Tablet responsive design */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .welcome-text {
+        font-size: 24px;
+        left: 60px; /* Keep consistent simple positioning */
+    }
+    
+    .robot-container {
+        width: 300px;
+        height: 300px;
+        bottom: 60px;
+        right: 60px;
+    }
+    
+    .speech-bubble {
+        right: 40px;
+        max-width: 350px;
+    }
+} 

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Satpathy - Professional Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Press+Start+2P&family=Kalam:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Itim&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 120px; /* Account for fixed navigation */
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 40px;
+            background: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .top-nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%; /* Half the width */
+            height: 1px;
+            background: #000000;
+            border-radius: 2px 6px 1px 4px;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border: 2px solid #333;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 10px;
+            font-family: 'Press Start 2P', cursive;
+            color: #333;
+        }
+
+        .nav-btn.home {
+            background: #ffffff;
+            padding: 14px 20px;
+        }
+
+        .nav-btn.resume {
+            background: #fef2f2; /* Light reddish */
+            border-color: #fca5a5;
+            color: #dc2626;
+        }
+
+        .nav-btn.linkedin {
+            background: #eff6ff; /* Light bluish */
+            border-color: #93c5fd;
+            color: #2563eb;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn.home:hover {
+            background: #f9fafb;
+        }
+
+        .nav-btn.resume:hover {
+            background: #fee2e2;
+        }
+
+        .nav-btn.linkedin:hover {
+            background: #dbeafe;
+        }
+
+        .nav-btn.go-top {
+            background: #f3f4f6; /* Light gray */
+            border-color: #9ca3af;
+            color: #374151;
+            padding: 14px 16px; /* Smaller square button */
+            min-width: auto;
+        }
+
+        .nav-btn.go-top:hover {
+            background: #e5e7eb;
+        }
+
+
+
+        /* Filter Section */
+        .filter-section {
+            background: #ffffff;
+            padding: 25px 40px;
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            justify-content: center;
+        }
+
+        /* Hand-drawn style checkboxes */
+        .filter-item input[type="checkbox"] {
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+        }
+
+        .filter-item input[type="checkbox"]::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #333;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            left: 4px;
+            top: -1px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .filter-item label {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            color: #333;
+        }
+
+        /* Color coding for checked filters */
+        .filter-item.research input:checked::after {
+            color: #7c3aed;
+        }
+
+        .filter-item.engineering input:checked::after {
+            color: #0891b2;
+        }
+
+        .filter-item.organization input:checked::after {
+            color: #ea580c;
+        }
+
+        .filter-item.communication input:checked::after {
+            color: #16a34a;
+        }
+
+        .filter-item.misc input:checked::after {
+            color: #475569;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        /* Project Cards */
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .project-card {
+            background: transparent;
+            overflow: visible;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 20px 27px;
+        }
+
+        /* Scribbly hand-drawn border effect */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: transparent;
+            border: 2px solid;
+            border-radius: 10px;
+            z-index: 1;
+            filter: url(#rough);
+        }
+
+        .project-card:nth-child(even)::before {
+            border-radius: 10px;
+            top: -8px;
+            left: -12px;
+            right: -8px;
+            bottom: -12px;
+        }
+
+        .project-card:nth-child(3n)::before {
+            border-radius: 10px;
+            top: -12px;
+            left: -8px;
+            right: -12px;
+            bottom: -8px;
+        }
+
+        /* Color fill that matches the jagged border exactly */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 10px;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        .project-card:nth-child(even)::after {
+            border-radius: 10px;
+            top: -8px;
+            left: -12px;
+            right: -8px;
+            bottom: -12px;
+        }
+
+        .project-card:nth-child(3n)::after {
+            border-radius: 10px;
+            top: -12px;
+            left: -8px;
+            right: -12px;
+            bottom: -8px;
+        }
+
+        .project-card.center-focus {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .project-content {
+            display: flex;
+            min-height: 200px;
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        .project-image {
+            width: 300px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-right: 30px;
+            border-radius: 8px;
+            position: relative;
+            border: 2px solid #ddd;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background: rgba(241, 245, 249, 0.3);
+            z-index: -1;
+        }
+
+        .project-image.right {
+            order: 2;
+            margin-right: 0;
+            margin-left: 30px;
+        }
+
+        .project-text {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-date {
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-company {
+            font-size: 18px;
+            color: #475569;
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-description {
+            color: #374151;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hand-drawn tag effect */
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid;
+            border-radius: 8px 12px 10px 15px;
+            transform: rotate(-2deg);
+            z-index: -1;
+        }
+
+        .skill-tag:nth-child(even)::before {
+            border-radius: 12px 8px 15px 9px;
+            transform: rotate(1.5deg);
+        }
+
+        .skill-tag:nth-child(3n)::before {
+            border-radius: 10px 14px 8px 12px;
+            transform: rotate(-0.8deg);
+        }
+
+        .skill-tag.research {
+            background: #faf5ff;
+            color: #7c3aed;
+        }
+
+        .skill-tag.research::before {
+            border-color: #7c3aed;
+        }
+
+        .skill-tag.engineering {
+            background: #f0fdff;
+            color: #0891b2;
+        }
+
+        .skill-tag.engineering::before {
+            border-color: #0891b2;
+        }
+
+        .skill-tag.organization {
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .skill-tag.organization::before {
+            border-color: #ea580c;
+        }
+
+        .skill-tag.communication {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .skill-tag.communication::before {
+            border-color: #16a34a;
+        }
+
+        .skill-tag.misc {
+            background: #f8fafc;
+            color: #475569;
+        }
+
+        .skill-tag.misc::before {
+            border-color: #475569;
+        }
+
+        /* Project card colors - borders and fills */
+        .project-card.research::before {
+            border-color: #7c3aed;
+        }
+
+        .project-card.research::after {
+            background: #faf5ff;
+        }
+
+        .project-card.engineering::before {
+            border-color: #0891b2;
+        }
+
+        .project-card.engineering::after {
+            background: #f0fdff;
+        }
+
+        .project-card.organization::before {
+            border-color: #ea580c;
+        }
+
+        .project-card.organization::after {
+            background: #fff7ed;
+        }
+
+        .project-card.communication::before {
+            border-color: #16a34a;
+        }
+
+        .project-card.communication::after {
+            background: #f0fdf4;
+        }
+
+        .project-card.misc::before {
+            border-color: #475569;
+        }
+
+        .project-card.misc::after {
+            background: #f8fafc;
+        }
+
+        /* Combined skill backgrounds with messy gradients */
+        .project-card.research-engineering::before {
+            border-color: #7c3aed;
+        }
+
+        .project-card.research-engineering::after {
+            background: radial-gradient(ellipse at 30% 20%, #faf5ff 40%, #f0fdff 60%, #faf5ff 80%);
+        }
+
+        .project-card.engineering-organization::before {
+            border-color: #0891b2;
+        }
+
+        .project-card.engineering-organization::after {
+            background: radial-gradient(ellipse at 70% 30%, #f0fdff 35%, #fff7ed 65%, #f0fdff 85%);
+        }
+
+        .project-card.communication-organization::before {
+            border-color: #16a34a;
+        }
+
+        .project-card.communication-organization::after {
+            background: radial-gradient(ellipse at 20% 80%, #f0fdf4 45%, #fff7ed 55%, #f0fdf4 75%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filter-section {
+                padding: 20px;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+                         .project-content {
+                 flex-direction: column;
+             }
+
+             .project-image {
+                 width: 100%;
+                 height: 200px;
+                 margin-right: 0;
+                 margin-bottom: 20px;
+             }
+
+             .project-image.right {
+                 order: 0;
+                 margin-left: 0;
+                 margin-bottom: 20px;
+             }
+
+            .project-text {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="index.html" class="nav-btn home">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+        
+        <a href="#" class="nav-btn resume" onclick="downloadResume()">
+            <i class="fas fa-download"></i>
+            Download Resume
+        </a>
+        
+        <a href="https://www.linkedin.com/in/satpathyakash/" target="_blank" class="nav-btn linkedin">
+            <i class="fab fa-linkedin-in"></i>
+            LinkedIn
+        </a>
+        
+        <a href="#" class="nav-btn go-top" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </nav>
+
+    <!-- SVG for rough/sketchy effect -->
+    <svg width="0" height="0">
+        <defs>
+            <filter id="rough">
+                <feTurbulence baseFrequency="0.04" numOctaves="3" result="noise" seed="1"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="1"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <div class="filter-group">
+                <div class="filter-item research">
+                    <input type="checkbox" id="research" value="research" onchange="filterProjects()">
+                    <label for="research">Research</label>
+                </div>
+                <div class="filter-item engineering">
+                    <input type="checkbox" id="engineering" value="engineering" onchange="filterProjects()">
+                    <label for="engineering">Engineering</label>
+                </div>
+                <div class="filter-item organization">
+                    <input type="checkbox" id="organization" value="organization" onchange="filterProjects()">
+                    <label for="organization">Organization Building</label>
+                </div>
+                <div class="filter-item communication">
+                    <input type="checkbox" id="communication" value="communication" onchange="filterProjects()">
+                    <label for="communication">Communication</label>
+                </div>
+                <div class="filter-item misc">
+                    <input type="checkbox" id="misc" value="misc" onchange="filterProjects()">
+                    <label for="misc">Misc</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="projects-container" id="projectsContainer">
+            
+            <!-- Project 1: knightsGPT -->
+            <div class="project-card research-engineering" data-skills="research engineering">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="assets/professional/parberry_stitched_example.png" alt="An example of a parberry solution to the Knight's tour" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">Can an autoregressive transformer <i>learn</i> how to solve the Knight's tour?</h2>
+                                <p class="project-date">October 2024 - January 2025</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Independent</p>
+                        <p class="project-description">
+                            <b>Summary:</b> I trained a 57 million parameter verison of GPT-2 on tens of millions of knight's tour puzzles encoded as linear indices and evaluated whether the model could solve unseen "parberry" puzzles.
+                            <br>
+                            <br>
+                            <b>Extended Description:</b> "Can large language models generalize?" remains an open question amongst language modeling and artificial intelligence researchers. Investigating this question is quite challenging using LLMs trained on internet corpora. 
+                            <br>
+                            <br>
+                            First, there are methodological debates and uncertainty surrounding the tests of generality. Second, generating out-of-distribution examples is difficult; the internet is vast, and it is hard to verify if evaluations with supposedly out-of-distribution examples are actually out-of-distribution. Third, even if truly novel, out-of-distribution examples can be crafted, interpretability methods are not advanced enough to determine whether the model solved the question using <i>genuine reasoning</i> or mere interpolation / pattern recognition.
+                            <br>
+                            <br>
+                            Games and puzzles offer a unique opportunity to investigate generalization as they allow us to tightly constrain training and evaluation examples. Motivated by <a href="https://arxiv.org/pdf/2210.13382">Li et al. (2022)</a> and <a href="https://arxiv.org/pdf/2402.04494v1">Ruoss et al. (2022)</a>, and after noticing that <i>the Knight's tour had never previously been used as a test of generalization, </i>I trained a GPT-2 variant on tens of millions of knight's tour puzzles encoded as linear indices and evaluated whether the model could solve unseen partial puzzles. I found that models are able to generalize, and the extent of generalization increases for models trained on more data. The version of the model trained on ~25 million Knight's tours could solve 999/1191 parberry puzzles. 
+                            <br>
+                            <br>
+                            Code for generating the training examples, model set up, training, and evaluation can be found here: <a href=https://github.com/AsteroidHunter/knightsGPT>https://github.com/AsteroidHunter/knightsGPT</a>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag research">Research</span>
+                            <span class="skill-tag engineering">Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: replicating alexnet -->
+            <div class="project-card engineering" data-skills="engineering">
+                <div class="project-content">
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">A faithful replication of AlexNet</h2>
+                                <p class="project-date">June 2024 - August 2024</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Independent</p>
+                        <p class="project-description">
+                            <a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">Krizhevsky et al. (2012)</a> is a foundational paper that is often credited as having kickstarted the deep learning revolution. The original paper preceded the creation of the PyTorch library, so the authors designed the model, the data processing pipeline, and all associated components from scratch. 
+                            <br>
+                            <br>
+                            For this project, my goal was gaining more familiarity with research engineering practices in deep learning. I read the paper section-by-section and replicated everything the authors did in jupyter notebooks; LLM usage was limited to inquiries about conceptual questions, debugging, and some idea generation (but not code generation). I wanted the replication to be as faithful as possible, so I used the entire ~150 GB ImageNet 2010 dataset and the 2-GPU split architecture that the authors had used. While other alexnet replications exist, this is the first that employs <i>model sharding</i> the same way the authors originally did. <b>My model's top-1 and top-5 accuracy were within 2.8% of the original paper.</b>
+                            <br>
+                            <br>
+                            The final code for the data augmentation, model training & evaluation, along with notes on challenges faced can be found here: <a href="https://github.com/AsteroidHunter/replicatingAlexNet">https://github.com/AsteroidHunter/replicatingAlexNet</a>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag engineering">Engineering</span>
+                        </div>
+                    </div>
+                    <div class="project-image right">
+                        <img src="assets/professional/metrics_second_hpc_run.png" alt="Plots that show the accuracy and loss from the replication training run." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: shellbert -->
+            <div class="project-card research-engineering" data-skills="research engineering">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="assets/professional/shellbert_low.png" alt="a portrait of shellbert after his visit to the dutchlands." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">shellbert: an LLM-based turtle with a personality</h2>
+                                <p class="project-date">June 2025 - Present</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Independent</p>
+                        <p class="project-description">
+                            Shellbert is an LLM with a personality that will serve primarily two functions:
+                            
+                            <br>
+                            1. <b>Automatically finding and posting impact-relevant jobs and opportunities</b> in Tucson Effective Altruism's discord server.
+                            <br>
+                            2. <b>Answering questions</b> related to moral/philosophy, economics, global health, animal welfare, and other topics covered in the UArizona course <i>Pathways to Progress.</i>
+                            
+                            <br>
+                            <br>
+                            To better perform these two core tasks, the model will have the capacity to perform web searches, perform simple agentic tasks, and use tools. Besides serving the two goals above, <b>two core motivations behind this project are practical implementation of alignment and personality engineering, as well as remote model deployment.</b>
+                            <br>
+                            <br>
+                            Shellbert is currently based on the instruction-tuned versions of the <a href="https://huggingface.co/collections/google/gemma-3n-685065323f5984ef315c93f4">Gemma 3n models.</a> The model is hosted on a personal remote server with four NVIDIA 3060's (although, the bot typically uses just a single GPU).
+                            <br>
+                            <br>
+                            You can find shellbert here: <a href="https://github.com/AsteroidHunter/shellbert">https://github.com/AsteroidHunter/shellbert</a>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag research">Research</span>
+                            <span class="skill-tag engineering">Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: mhpc -->
+            <div class="project-card engineering-misc" data-skills="engineering misc">
+                <div class="project-content">
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">Building a local "high-performance" cluster</h2>
+                                <p class="project-date">February 2025 + Late April and early May 2025</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Independent</p>
+                        <p class="project-description">
+                            I did not have enough VRAM to work on projects, so a friend and I started an AI club, submitted a funding proposal for a remote computing cluster, secured a grant from the university, and sourced and assembled a local GPU cluster with 48 gigabytes of VRAM.
+                            <br>
+                            <br>
+                            I took charge of setting up the software for this computing cluster. I modeled the set up after <a href="https://hpcdocs.hpc.arizona.edu/">University of Arizona's high-performance computers,</a> which I had extensively used as an undergraduate and graduate research assistant. More concretely, this involved:
+                            <br>
+                            — Setting up Duo 2-factor authentication for all users
+                            <br>
+                            — Implementing security measures for preventing brute-force attacks
+                            <br>
+                            — Configuring the SLURM workload manager for job scheduling
+                            <br>
+                            — Installing NVIDIA/CUDA drivers and uv for python management
+                            <br>
+                            — And general maintenane and debugging as and when problems arise
+                            <br>
+                            <br>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag engineering">Engineering</span>
+                            <span class="skill-tag misc">Misc</span>
+                        </div>
+                    </div>
+                    <div class="project-image right">
+                        <img src="assets/professional/mhpcsetup.jpg" alt="The remote cluster being built, late April." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: neowise graduate work -->
+            <div class="project-card research-engineering" data-skills="research engineering">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="assets/professional/opt_curve_N4061_all_epochs.png" alt="The optmization landscape of one of the larger Near-Earth Asteroids with plenty of observations." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">Size & Albedo distribution of Near-Earth Asteroids observed by NEOWISE</h2>
+                                <p class="project-date">December 2022 - December 2023</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Graduate Research Assistant, <a href="https://science.nasa.gov/mission/neo-surveyor/">NEOWISE/NEOS</a></p>
+                        <p class="project-description">
+                            <b>Summary:</b> We used NEATM (<a href="https://doi.org/10.1006/icar.1997.5865">Harris, 1998</a>) and a nonlinear optimization pipeline for modeling and physically characterizing thermally-dominated observations of ~2200 Near-Earth Asteroids (NEAs). This work was done when I was a part of the NEO Surveyor science team, and the results of this investigation were presented at the Planetary Defense Conference (2023).
+                            <br>
+                            <br>
+                            My three core contributions to this project:
+                            <br>
+                            1. <b>Determining the ideal optimization algorithm:</b> I crafted plots and analytical functions to explore the convexity vs. nonconvexity of the loss landscape, independently read about and implemented various nonlinear optimization algorithms from the Scipy and NLOpt libraries, and compared the execution speed and accuracy of the functions implemented. Besides finding the optimal optimization algorithm for the thermal modeling pipeline, a secondary motivation here was testing if the standard errors of the fits could be retrieved from the hessian; while second-order optimization methods are slower, if the standard errors could be retrieved, it would overall reduce modeling time as it is cheaper than running <i>n</i> monte carlo simulations.
+                            <br>
+                            2. <b>Pipeline development & validation:</b> I helped parallelize the thermal modeling pipeline using python's multiprocessing package. The other major task was validating the reliability of the pipeline, for which, I created a script that could generate synthetic asteroids using characteristics found in real-world observational data as the prior, and then tested if the results from the new pipeline were close to true diameters and albedos of the synthetic objects.
+                            <br>
+                            3. <b>Characterization and analysis of 2200 NEAs:</b> After the pipeline had been sufficiently developed and validated, I ran the algorithm on all the NEA observational data we had, inspected the validity of the fits (and re-fit bad fits using more appropriate parameters), and presented the final results in the form of a talk at the Planetary Defense Conference in Vienna.
+                            <br>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag research">Research</span>
+                            <span class="skill-tag engineering">Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: tea -->
+            <div class="project-card communication-organization" data-skills="communication organization">
+                <div class="project-content">
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">Tucson Effective Altruism (TEA)</h2>
+                                <p class="project-date">May 2022 - June 2025</p>
+                            </div>
+                        </div>
+                        <p class="project-company"></p>
+                        <p class="project-description">
+                            Tucson Effective Altruism is an organization I co-founded and scaled at the University of Arizona. This is the most entrepreneurial experience I have had so far. We started quite scrappy: two people running small discussion groups. <b>By the end of year three, we had ten organizers in the team collectively dedicating upwards of 35-40 hours each week, and our regular operations included running a univeristy course, a career planning program, hosting research-styled symposia, and weekly community socials.</b>
+                            <br>
+                            <br>
+                            Here is the list from LinkedIn and my resume describing the many hats I wore:
+                            <br>
+                            <br>
+                            — Spearheaded all core operations such as running weekly meetings, delegating tasks to a 10-person team, leading outreach initiatives, course logistics, and optimal management of a ~$3K annual budget
+                            <br>
+                            — Negotiated with the philosophy department leadership to convert our pilot 11-week discussion program into an accredited University of Arizona course, with 75+ participants over three years
+                            <br>
+                            — Drafted and improved the course's syllabus and readings, mediated weekly discussions, and managed teaching assistantship duties such as grading and office hours
+                            <br>
+                            — Amplified membership and awareness by delivering dozens of in-class pitches (with 100-600 attendees), hosting tabling events, and executing targeted email and social-media campaigns
+                            <br>
+                            — Doubled our Fall '24 & Spring '25 early-semester email list sign-ups from 75 to 160+ per semester through A/B-tested messaging and improved in-person outreach
+                            <br>
+                            — Leveraged Mailchimp, Qualtrics, Substack, CampusGroup's web-hosting platform, and D2L to automate email campaigns, process applications, disperse newsletters, and host course content 
+                            <br>
+                            — Hosted catered symposia exploring topics within moral philosophy, AI safety, global health, career planning, and cause prioritization, attracting 25+ attendees
+                            <br>
+                            — Developed and iterated a writing-focused career development program, and offered 1-on-1 career guidance to students
+                            <br>
+                            — Conducted post-mortems and targeted interviews after each term to improve organizational efficiency and member satisfaction
+                            <br>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag organization">Org Building</span>
+                            <span class="skill-tag communication">Communication</span>
+                        </div>
+                    </div>
+                    <div class="project-image right">
+                        <img src="assets/professional/teasearch2_202505.jpg" alt="Picture from the second TEAsearch symposium, held in May 2025." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7: neowise undergraduate work -->
+            <div class="project-card research-engineering" data-skills="research engineering">
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="assets/professional/apophis_paper_psj_as.png" alt="A screen grab of Satpathy et al. (2022)." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="project-text">
+                        <div class="project-header">
+                            <div>
+                                <h2 class="project-title">Physical characterization of the potentially hazardous (99942) Apophis</h2>
+                                <p class="project-date">January 2021 - April 2022</p>
+                            </div>
+                        </div>
+                        <p class="project-company">Undergraduate Research Assistant, <a href="https://science.nasa.gov/mission/neo-surveyor/">NEOWISE</a></p>
+                        <p class="project-description">
+                            <b>Summary:</b> We used a scalar optimization algorithm built around NEATM (<a href="https://doi.org/10.1006/icar.1997.5865">Harris, 1998</a>) and a markov chain monte carlo algorithm using a thermophysical Model (<a href="https://doi.org/10.48550/arXiv.astro-ph/0703085">Wright, 2007</a>) to physically characterize the near-Earth asteroid (99942) Apophis. Our computed effective diameter, albedo, and thermal inertia of the object were in agreement with previous studies on the object, and the final results were published as a <a href="https://iopscience.iop.org/article/.3847/PSJ/ac66d1/pdf">first-author paper</a> in the Planetary Science journal. Due to the importance of the object as a potentially hazardous asteroid and since this work was a part of <a href="https://iopscience.iop.org/article/10.3847/PSJ/ac66eb/meta">larger planetary defense exercise</a>, the paper also received some <a href="https://www.nasa.gov/solar-system/asteroids/planetary-defense-exercise-uses-apophis-as-hazardous-asteroid-stand-in/">some</a> <a href="https://interestingengineering.com/science/nasa-planetary-defense-global-threat">media</a> <a href="https://www.universetoday.com/articles/astronomers-just-practiced-what-would-happen-if-a-potentially-dangerous-asteroid-was-detected">coverage</a>.
+                            <br>
+                            <br>
+                            <!-- <b>Extended Description:</b>   -->
+                            <br>
+                            
+                            <br>
+                            
+                            <br>
+                            
+                            <br>
+                        </p>
+                        <div class="project-skills">
+                            <span class="skill-tag research">Research</span>
+                            <span class="skill-tag engineering">Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function downloadResume() {
+            alert('Resume download functionality will be implemented here. For now, please contact me directly for my latest resume.');
+        }
+
+        function scrollToTop() {
+            // Custom smooth scrolling that's slower and more controlled
+            const scrollToTopSmooth = () => {
+                const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+                if (currentScroll > 0) {
+                    window.requestAnimationFrame(scrollToTopSmooth);
+                    window.scrollTo(0, currentScroll - (currentScroll / 2)); // Much slower
+                }
+            };
+            scrollToTopSmooth();
+        }
+
+        function filterProjects() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedSkills = Array.from(checkboxes).map(cb => cb.value);
+            const projectCards = document.querySelectorAll('.project-card');
+
+            projectCards.forEach(card => {
+                const cardSkills = card.dataset.skills.split(' ');
+                const hasMatchingSkill = selectedSkills.length === 0 || 
+                    selectedSkills.some(skill => cardSkills.includes(skill));
+                
+                card.style.display = hasMatchingSkill ? 'block' : 'none';
+            });
+        }
+
+                 // Center card focus effect on scroll
+         function updateCenterCard() {
+             const cards = document.querySelectorAll('.project-card');
+             const viewportHeight = window.innerHeight;
+             const centerY = viewportHeight / 2;
+
+             cards.forEach(card => {
+                 const rect = card.getBoundingClientRect();
+                 const cardCenterY = rect.top + rect.height / 2;
+                 const distanceFromCenter = Math.abs(centerY - cardCenterY);
+                 
+                 // Remove center focus from all cards first
+                 card.classList.remove('center-focus');
+                 
+                 // Add focus to the card closest to center
+                 if (distanceFromCenter < 200) {
+                     card.classList.add('center-focus');
+                 }
+             });
+         }
+
+         // Initialize - show all projects
+         document.addEventListener('DOMContentLoaded', function() {
+             console.log('Professional portfolio loaded successfully');
+             updateCenterCard();
+         });
+
+         // Update center card on scroll
+         window.addEventListener('scroll', updateCenterCard);
+         window.addEventListener('resize', updateCenterCard);
+    </script>
+</body>
+</html> 

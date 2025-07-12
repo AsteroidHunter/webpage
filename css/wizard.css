@@ -1,0 +1,379 @@
+/* Wizard Container */
+.wizard-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 2rem auto;
+}
+
+/* Main Wizard */
+.wizard {
+    position: relative;
+    width: 100px;
+    height: 150px;
+    margin: 0 auto;
+    transform: translate(200px, 100px);
+    opacity: 0;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+/* Wizard Body */
+.wizard-body {
+    position: relative;
+    width: 60px;
+    height: 100px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    transform: rotateY(-15deg);
+}
+
+/* Wizard Head */
+.wizard-head {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #ffebcd, #f5deb3);
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+    margin: 0 auto 5px;
+    border: 2px solid #deb887;
+    box-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.1),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.1),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    transform: rotateY(-10deg);
+}
+
+/* Wizard Eyes */
+.wizard-eyes {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.eye {
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    position: relative;
+}
+
+.eye::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* Wizard Mouth */
+.wizard-mouth {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 4px;
+    background: #8b4513;
+    border-radius: 0 0 8px 8px;
+    transition: all 0.1s ease;
+}
+
+.wizard-mouth.talking {
+    height: 8px;
+    border-radius: 50%;
+    animation: mouth-move 0.3s ease-in-out infinite alternate;
+}
+
+/* Wizard Robe */
+.wizard-robe {
+    width: 60px;
+    height: 70px;
+    background: linear-gradient(145deg, #dda0dd, #da70d6);
+    border-radius: 0 0 30px 30px;
+    position: relative;
+    border: 2px solid #ba55d3;
+    box-shadow: 
+        2px 2px 6px rgba(0, 0, 0, 0.15),
+        inset -1px -1px 3px rgba(0, 0, 0, 0.1),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.wizard-robe::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(145deg, #e6e6fa, #d8bfd8);
+    border-radius: 50%;
+    border: 1px solid #9370db;
+    box-shadow: 
+        1px 1px 3px rgba(0, 0, 0, 0.1),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.wizard-robe::after {
+    content: '✨';
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: #ffd700;
+    animation: sparkle 2s ease-in-out infinite;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+}
+
+/* Wizard Staff */
+.wizard-staff {
+    position: absolute;
+    right: -20px;
+    top: 20px;
+    width: 8px;
+    height: 80px;
+    transform-origin: bottom center;
+    transform: rotateY(15deg);
+}
+
+.staff-handle {
+    width: 8px;
+    height: 70px;
+    background: linear-gradient(145deg, #deb887, #cd853f);
+    border-radius: 4px;
+    border: 1px solid #d2691e;
+    box-shadow: 
+        1px 1px 3px rgba(0, 0, 0, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.staff-crystal {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #add8e6, #87ceeb);
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #4682b4;
+    box-shadow: 
+        0 0 15px rgba(173, 216, 230, 0.8),
+        inset 0 0 8px rgba(255, 255, 255, 0.7),
+        2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: crystal-glow 2s ease-in-out infinite alternate;
+}
+
+.staff-crystal::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+/* Wizard Hat */
+.wizard::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%) rotateY(-10deg);
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 40px solid #ba55d3;
+    z-index: 10;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.wizard::after {
+    content: '⭐';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #ffd700;
+    z-index: 11;
+    animation: hat-star 3s ease-in-out infinite;
+}
+
+/* Floating Particles */
+.wizard-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
+        radial-gradient(2px 2px at 40px 70px, #00ffff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #ff69b4, transparent),
+        radial-gradient(1px 1px at 130px 80px, #98fb98, transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
+    background-repeat: no-repeat;
+    animation: particles-float 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes mouth-move {
+    0% { height: 4px; }
+    100% { height: 8px; }
+}
+
+@keyframes crystal-glow {
+    0% { 
+        box-shadow: 0 0 20px #00ffff, inset 0 0 10px rgba(255, 255, 255, 0.5);
+        transform: translateX(-50%) scale(1);
+    }
+    100% { 
+        box-shadow: 0 0 40px #00ffff, inset 0 0 20px rgba(255, 255, 255, 0.8);
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+@keyframes hat-star {
+    0%, 100% { 
+        transform: translateX(-50%) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateX(-50%) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateX(-50%) rotate(180deg);
+        opacity: 0.6;
+    }
+    75% { 
+        transform: translateX(-50%) rotate(270deg);
+        opacity: 1;
+    }
+}
+
+@keyframes particles-float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+        opacity: 0.7;
+    }
+    66% {
+        transform: translateY(-10px) rotate(240deg);
+        opacity: 0.9;
+    }
+}
+
+@keyframes wizard-walk {
+    0% {
+        transform: translate(200px, 100px) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes staff-drop {
+    0% {
+        transform: rotateY(15deg) rotate(0deg);
+    }
+    50% {
+        transform: rotateY(15deg) rotate(45deg) translateY(20px);
+    }
+    100% {
+        transform: rotateY(15deg) rotate(90deg) translateY(40px);
+    }
+}
+
+@keyframes staff-pickup {
+    0% {
+        transform: rotateY(15deg) rotate(90deg) translateY(40px);
+    }
+    100% {
+        transform: rotateY(15deg) rotate(0deg) translateY(0px);
+    }
+}
+
+@keyframes staff-wave {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+
+/* Wizard entrance animation classes */
+.wizard.entering {
+    animation: wizard-walk 2s ease-out forwards;
+}
+
+.wizard.talking .wizard-staff {
+    animation: staff-wave 0.6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wizard-container {
+        width: 150px;
+        height: 250px;
+    }
+    
+    .wizard {
+        width: 80px;
+        height: 120px;
+    }
+    
+    .wizard-body {
+        width: 50px;
+        height: 80px;
+    }
+    
+    .wizard-head {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .wizard-robe {
+        width: 50px;
+        height: 60px;
+    }
+} 

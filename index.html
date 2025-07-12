@@ -1,28 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>~/akash/</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/style_20230619.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>akash's website</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="matrix-bg"></div>
+    <div class="stars"></div>
+    
+    <!-- Welcome Text -->
+    <div class="welcome-text">Hi, welcome to akash's websight.</div>
+    
+    <!-- Info icon for painting details -->
+    <div class="info-icon" onclick="toggleInfoPopup()">i</div>
+    <div class="info-popup" id="info-popup">
+        <div class="artist-name">Syd Mead</div>
+        <div class="artwork-title"><em>Entering Stargate</em></div>
+        <div class="artwork-year">1991</div>
+    </div>
+
     <div class="container">
-        <img src="assets/square_cropped_AS.jpg" alt="akash satpathy"
-             style="width:300px;height:auto;">
-        <h1>akash satpathy</h1>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/satpathyakash/">LinkedIn</a>
-            <span class="divider">|</span>
-            <a href="about.html">About</a>
-            <span class="divider">|</span>
-            <a href="research.html">Research</a>
-            <span class="divider">|</span>
-            <a href="https://akashnotes.substack.com/">Not-a-blog</a>
+        <div class="robot-container" id="robot-container">
+            <canvas id="robot-canvas"></canvas>
+        </div>
+
+        <div class="speech-bubble" id="speech-bubble" style="display: none;">
+            <div class="bubble-content">
+                <p id="bubble-text">Hi! I'm Kuda, guardian of this corner of the web. Fellow traveler, who are you?</p>
+                <div class="choice-container" id="choice-buttons" style="display: none;">
+                    <div class="choice-buttons">
+                        <button class="choice-btn recruiter-btn" onclick="navigateTo('recruiter')">
+                            I'm a Recruiter
+                        </button>
+                        <button class="choice-btn friend-btn" onclick="navigateTo('friend')">
+                            I'm a Friend
+                        </button>
+                        <button class="choice-btn random-btn" onclick="navigateTo('random')">
+                            Random Web Visitor
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <footer>
-        This page was made using the help of ChatGPT. I don't know any HTML/CSS,
-        and so far, I have spent 90 minutes working on this webbed-site.
-    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/robot.js"></script>
+    <script src="js/wizard.js"></script>
+    <script src="js/animations.js"></script>
 </body>
-</html>
+</html> 
