@@ -245,7 +245,7 @@ function navigateTo(destination) {
                 // Navigate to the appropriate page
                 switch(destination) {
                     case 'recruiter':
-                        window.location.href = 'recruiter.html';
+                        window.location.href = 'projects.html';
                         break;
                     case 'friend':
                         window.location.href = 'friend.html';
@@ -263,7 +263,7 @@ function navigateTo(destination) {
             onComplete: () => {
                 switch(destination) {
                     case 'recruiter':
-                        window.location.href = 'recruiter.html';
+                        window.location.href = 'projects.html';
                         break;
                     case 'friend':
                         window.location.href = 'friend.html';
