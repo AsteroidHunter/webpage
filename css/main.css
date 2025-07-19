@@ -267,9 +267,8 @@ body::after {
 /* Speech bubble */
 .speech-bubble {
     position: fixed;
-    top: calc(20% + 10px); /* Moved down 10px from original position */
+    top: 120px; /* Start well below the title */
     right: 50px; /* Position on the right side */
-    transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.95);
     border: 3px solid #333;
     border-radius: 15px;
@@ -289,6 +288,7 @@ body::after {
     margin-bottom: 1.5rem;
     color: #333;
     font-size: 12px;
+    text-align: justify;
 }
 
 .choice-container {
@@ -366,7 +366,7 @@ body::after {
     
     .speech-bubble {
         right: 20px;
-        top: calc(25% + 10px); /* Mobile positioning moved down 10px */
+        top: 15vh; /* Use viewport height for responsive positioning */
         max-width: calc(100vw - 40px);
         min-width: 250px;
         font-size: 10px;
@@ -391,6 +391,48 @@ body::after {
     .choice-buttons {
         width: 100%;
         gap: 0.5rem;
+    }
+}
+
+/* Small height viewports (landscape mobile) */
+@media (max-height: 600px) {
+    .speech-bubble {
+        top: 10vh !important; /* Higher positioning for short screens */
+        right: 20px !important;
+        left: auto !important;
+        max-width: 300px;
+        min-width: 200px;
+        padding: 0.8rem;
+    }
+    
+    .bubble-content p {
+        font-size: 9px;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+    
+    .choice-btn {
+        font-size: 8px;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Very small viewports (both small width and height) */
+@media (max-width: 768px) and (max-height: 600px) {
+    .speech-bubble {
+        top: 60px !important; /* Fixed positioning to avoid covering robot */
+        left: 10px !important;
+        right: 10px !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        padding: 0.6rem;
+    }
+    
+    .robot-container {
+        width: 180px;
+        height: 180px;
+        bottom: 10px;
+        right: 10px;
     }
 }
 

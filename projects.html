@@ -120,6 +120,35 @@
             padding: 25px 40px;
         }
 
+        /* Header Section */
+        .header-section {
+            background: #ffffff;
+            padding: 40px 40px 20px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-content {
+            width: 750px;
+            text-align: justify;
+        }
+
+        .header-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .header-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
         .filter-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -153,26 +182,32 @@
             cursor: pointer;
             position: relative;
             background: transparent;
+            flex-shrink: 0;
         }
 
         .filter-item input[type="checkbox"]::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            top: 0;
+            left: 0;
+            width: 22px;
+            height: 22px;
             border: 3px solid #333;
             border-radius: 4px;
             background: #ffffff;
             box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
 
         .filter-item input[type="checkbox"]:checked::after {
-            content: '✓';
+            content: '✦';
             position: absolute;
-            left: 4px;
-            top: -1px;
-            font-size: 16px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
             font-weight: bold;
+            line-height: 1;
         }
 
         .filter-item label {
@@ -182,6 +217,9 @@
             cursor: pointer;
             user-select: none;
             color: #333;
+            display: flex;
+            align-items: center;
+            line-height: 1.4;
         }
 
         /* Color coding for checked filters */
@@ -207,7 +245,7 @@
 
         /* Main Content */
         .main-content {
-            max-width: 1200px;
+            max-width: 1400px; /* Increased from 1200px */
             margin: 0 auto;
             padding: 40px;
         }
@@ -227,75 +265,18 @@
             margin: 20px 27px;
         }
 
-        /* Scribbly hand-drawn border effect */
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: transparent;
-            border: 2px solid;
-            border-radius: 10px;
-            z-index: 1;
-            filter: url(#rough);
-        }
-
-        .project-card:nth-child(even)::before {
-            border-radius: 10px;
-            top: -8px;
-            left: -12px;
-            right: -8px;
-            bottom: -12px;
-        }
-
-        .project-card:nth-child(3n)::before {
-            border-radius: 10px;
-            top: -12px;
-            left: -8px;
-            right: -12px;
-            bottom: -8px;
-        }
-
-        /* Color fill that matches the jagged border exactly */
+        /* Remove the old card border effects since styling is now on text portion */
+        .project-card::before,
         .project-card::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 10px;
-            z-index: 0;
-            opacity: 0.8;
+            display: none;
         }
 
-        .project-card:nth-child(even)::after {
-            border-radius: 10px;
-            top: -8px;
-            left: -12px;
-            right: -8px;
-            bottom: -12px;
-        }
 
-        .project-card:nth-child(3n)::after {
-            border-radius: 10px;
-            top: -12px;
-            left: -8px;
-            right: -12px;
-            bottom: -8px;
-        }
-
-        .project-card.center-focus {
-            transform: scale(1.05);
-            z-index: 10;
-        }
 
         .project-content {
             display: flex;
             min-height: 200px;
-            padding: 25px;
+            padding: 15px; /* Reduced from 25px to give more space */
             position: relative;
             z-index: 2;
             background: transparent;
@@ -304,30 +285,31 @@
         }
 
         .project-image {
-            width: 300px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 14px;
+            min-width: 200px;
+            max-width: 400px;
+            width: auto;
+            height: auto;
+            background: transparent;
+            display: inline-block;
             margin-right: 30px;
             border-radius: 8px;
             position: relative;
-            border: 2px solid #ddd;
+            border: none;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            display: block;
+            max-width: 400px;
+            max-height: 350px;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
         }
 
         .project-image::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            background: rgba(241, 245, 249, 0.3);
-            z-index: -1;
+            display: none;
         }
 
         .project-image.right {
@@ -338,8 +320,41 @@
 
         .project-text {
             flex: 1;
-            padding: 10px;
+            min-width: 0; /* Ensures text can shrink */
+            max-width: 1000px; /* Increased from 600px */
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
+
+        /* Fix text overflow in links */
+        .project-description a {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Add a subtle hand-drawn border effect to text cards */
+        .project-text::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            z-index: -1;
+            filter: url(#rough);
+        }
+
+
 
         .project-header {
             display: flex;
@@ -358,14 +373,14 @@
 
         .project-date {
             font-size: 14px;
-            color: #64748b;
+            color: #000000;
             font-style: italic;
             font-family: 'Inter', sans-serif;
         }
 
         .project-company {
             font-size: 18px;
-            color: #475569;
+            color: #000000;
             font-weight: 500;
             margin-bottom: 15px;
             font-family: 'Inter', sans-serif;
@@ -376,6 +391,9 @@
             margin-bottom: 20px;
             line-height: 1.7;
             font-family: 'Inter', sans-serif;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .project-skills {
@@ -465,78 +483,47 @@
             border-color: #475569;
         }
 
-        /* Project card colors - borders and fills */
-        .project-card.research::before {
-            border-color: #7c3aed;
+        /* Text card colors - simplified to white/black */
+        .project-card .project-text {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
-        .project-card.research::after {
-            background: #faf5ff;
-        }
-
-        .project-card.engineering::before {
-            border-color: #0891b2;
-        }
-
-        .project-card.engineering::after {
-            background: #f0fdff;
-        }
-
-        .project-card.organization::before {
-            border-color: #ea580c;
-        }
-
-        .project-card.organization::after {
-            background: #fff7ed;
-        }
-
-        .project-card.communication::before {
-            border-color: #16a34a;
-        }
-
-        .project-card.communication::after {
-            background: #f0fdf4;
-        }
-
-        .project-card.misc::before {
-            border-color: #475569;
-        }
-
-        .project-card.misc::after {
-            background: #f8fafc;
-        }
-
-        /* Combined skill backgrounds with messy gradients */
-        .project-card.research-engineering::before {
-            border-color: #7c3aed;
-        }
-
-        .project-card.research-engineering::after {
-            background: radial-gradient(ellipse at 30% 20%, #faf5ff 40%, #f0fdff 60%, #faf5ff 80%);
-        }
-
-        .project-card.engineering-organization::before {
-            border-color: #0891b2;
-        }
-
-        .project-card.engineering-organization::after {
-            background: radial-gradient(ellipse at 70% 30%, #f0fdff 35%, #fff7ed 65%, #f0fdff 85%);
-        }
-
-        .project-card.communication-organization::before {
-            border-color: #16a34a;
-        }
-
-        .project-card.communication-organization::after {
-            background: radial-gradient(ellipse at 20% 80%, #f0fdf4 45%, #fff7ed 55%, #f0fdf4 75%);
+        .project-card .project-text::before {
+            border-color: #000000;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                padding-top: 200px; /* Increased padding for mobile to account for taller navigation */
+            }
+
             .top-nav {
-                padding: 20px;
+                padding: 15px 20px;
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow-x: hidden;
+            }
+
+            .nav-btn {
+                font-size: 9px;
+                padding: 10px 16px;
+                white-space: nowrap;
+                min-width: 0;
+                flex: 1;
+                justify-content: center;
+            }
+
+            .header-section {
+                padding: 20px;
+            }
+
+            .header-content {
+                width: 100%;
+                max-width: 300px;
             }
 
             .filter-section {
@@ -545,8 +532,18 @@
 
             .filter-container {
                 flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .filter-group {
+                flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
+            }
+
+            .filter-item {
+                align-self: flex-start;
             }
 
             .main-content {
@@ -558,20 +555,30 @@
              }
 
              .project-image {
+                 min-width: auto;
+                 max-width: 100%;
                  width: 100%;
                  height: 200px;
                  margin-right: 0;
                  margin-bottom: 20px;
+                 background: transparent;
+                 border: none;
              }
 
+             .project-image,
              .project-image.right {
-                 order: 0;
+                 order: -1; /* All images go to top */
                  margin-left: 0;
+                 margin-right: 0;
                  margin-bottom: 20px;
              }
 
             .project-text {
                 padding: 20px;
+                margin: 0;
+                max-width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
         }
     </style>
@@ -609,6 +616,16 @@
         </defs>
     </svg>
 
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="header-content">
+            <h2 class="header-title">akash's highlighted projects</h2>
+            <p class="header-description">
+                Hi, I am a technical generalist looking for a new role! Below, you will find extended descriptions of a few select projects that should highlight my research, engineering, and operational skills. For a quick summary, please check my resume above. Cheers.
+            </p>
+        </div>
+    </div>
+
     <!-- Filter Section -->
     <div class="filter-section">
         <div class="filter-container">
@@ -645,7 +662,7 @@
             <div class="project-card research-engineering" data-skills="research engineering">
                 <div class="project-content">
                     <div class="project-image">
-                        <img src="assets/professional/parberry_stitched_example.png" alt="An example of a parberry solution to the Knight's tour" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/parberry_stitched_example.png" alt="An example of a parberry solution to the Knight's tour">
                     </div>
                     <div class="project-text">
                         <div class="project-header">
@@ -697,13 +714,14 @@
                             <br>
                             <br>
                             The final code for the data augmentation, model training & evaluation, along with notes on challenges faced can be found here: <a href="https://github.com/AsteroidHunter/replicatingAlexNet">https://github.com/AsteroidHunter/replicatingAlexNet</a>
+                            <br>
                         </p>
                         <div class="project-skills">
                             <span class="skill-tag engineering">Engineering</span>
                         </div>
                     </div>
                     <div class="project-image right">
-                        <img src="assets/professional/metrics_second_hpc_run.png" alt="Plots that show the accuracy and loss from the replication training run." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/metrics_second_hpc_run.png" alt="Plots that show the accuracy and loss from the replication training run.">
                     </div>
                 </div>
             </div>
@@ -712,7 +730,7 @@
             <div class="project-card research-engineering" data-skills="research engineering">
                 <div class="project-content">
                     <div class="project-image">
-                        <img src="assets/professional/shellbert_low.png" alt="a portrait of shellbert after his visit to the dutchlands." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/shellbert_low.png" alt="a portrait of shellbert after his visit to the dutchlands.">
                     </div>
                     <div class="project-text">
                         <div class="project-header">
@@ -783,7 +801,7 @@
                         </div>
                     </div>
                     <div class="project-image right">
-                        <img src="assets/professional/mhpcsetup.jpg" alt="The remote cluster being built, late April." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/mhpcsetup.jpg" alt="The remote cluster being built, late April.">
                     </div>
                 </div>
             </div>
@@ -792,7 +810,7 @@
             <div class="project-card research-engineering" data-skills="research engineering">
                 <div class="project-content">
                     <div class="project-image">
-                        <img src="assets/professional/opt_curve_N4061_all_epochs.png" alt="The optmization landscape of one of the larger Near-Earth Asteroids with plenty of observations." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/opt_curve_N4061_all_epochs.png" alt="The optmization landscape of one of the larger Near-Earth Asteroids with plenty of observations.">
                     </div>
                     <div class="project-text">
                         <div class="project-header">
@@ -835,7 +853,7 @@
                         </div>
                         <p class="project-company"></p>
                         <p class="project-description">
-                            Tucson Effective Altruism is an organization I co-founded and scaled at the University of Arizona. This is the most entrepreneurial experience I have had so far. We started quite scrappy: two people running small discussion groups. <b>By the end of year three, we had ten organizers in the team collectively dedicating upwards of 35-40 hours each week, and our regular operations included running a univeristy course, a career planning program, hosting research-styled symposia, and weekly community socials.</b>
+                            Tucson Effective Altruism is an organization I co-founded and scaled at the University of Arizona. This is the most entrepreneurial experience I have had so far. We started quite scrappy: two people running small discussion groups. <b>By the end of year three, we had ten organizers in the team collectively dedicating upwards of 35-40 hours each week, and our regular operations included running a university course, a career planning program, hosting research-styled symposia, and weekly community socials.</b>
                             <br>
                             <br>
                             Here is the list from LinkedIn and my resume describing the many hats I wore:
@@ -866,7 +884,7 @@
                         </div>
                     </div>
                     <div class="project-image right">
-                        <img src="assets/professional/teasearch2_202505.jpg" alt="Picture from the second TEAsearch symposium, held in May 2025." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/teasearch2_202505.jpg" alt="Picture from the second TEAsearch symposium, held in May 2025.">
                     </div>
                 </div>
             </div>
@@ -875,7 +893,7 @@
             <div class="project-card research-engineering" data-skills="research engineering">
                 <div class="project-content">
                     <div class="project-image">
-                        <img src="assets/professional/apophis_paper_psj_as.png" alt="A screen grab of Satpathy et al. (2022)." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="assets/professional/apophis_paper_psj_as.png" alt="A screen grab of Satpathy et al. (2022).">
                     </div>
                     <div class="project-text">
                         <div class="project-header">
@@ -911,7 +929,7 @@
 
     <script>
         function downloadResume() {
-            alert('Resume download functionality will be implemented here. For now, please contact me directly for my latest resume.');
+            window.open('assets/professional/AkashS_resume_202506_v2.1.pdf', '_blank');
         }
 
         function scrollToTop() {
@@ -940,36 +958,10 @@
             });
         }
 
-                 // Center card focus effect on scroll
-         function updateCenterCard() {
-             const cards = document.querySelectorAll('.project-card');
-             const viewportHeight = window.innerHeight;
-             const centerY = viewportHeight / 2;
-
-             cards.forEach(card => {
-                 const rect = card.getBoundingClientRect();
-                 const cardCenterY = rect.top + rect.height / 2;
-                 const distanceFromCenter = Math.abs(centerY - cardCenterY);
-                 
-                 // Remove center focus from all cards first
-                 card.classList.remove('center-focus');
-                 
-                 // Add focus to the card closest to center
-                 if (distanceFromCenter < 200) {
-                     card.classList.add('center-focus');
-                 }
-             });
-         }
-
          // Initialize - show all projects
          document.addEventListener('DOMContentLoaded', function() {
              console.log('Professional portfolio loaded successfully');
-             updateCenterCard();
          });
-
-         // Update center card on scroll
-         window.addEventListener('scroll', updateCenterCard);
-         window.addEventListener('resize', updateCenterCard);
     </script>
 </body>
 </html> 

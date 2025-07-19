@@ -89,24 +89,18 @@ class RobotController {
     }
     
     positionSpeechBubble() {
-        // Position bubble on the right side since robot is bottom-right
+        // Clear any previous inline styles to let CSS handle positioning
         gsap.set(this.speechBubble, {
-            right: 50,
-            left: 'auto',
-            top: '20%', // Moved much higher up from 50%
-            transform: 'translateY(-50%)',
+            clearProps: "top,left,right,transform"
+        });
+        
+        // Only set essential properties that CSS can't handle dynamically
+        gsap.set(this.speechBubble, {
             position: 'fixed'
         });
         
-        // Adjust position for mobile
-        if (window.innerWidth < 768) {
-            gsap.set(this.speechBubble, {
-                left: '50%',
-                right: 'auto',
-                transform: 'translate(-50%, -50%)',
-                top: '25%' // Also higher on mobile
-            });
-        }
+        // Let CSS media queries handle all the responsive positioning
+        // This prevents JavaScript from overriding our CSS rules
     }
     
     typeMessage(callback) {
@@ -287,6 +281,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.robotController.handleResize();
     });
     
+    // Add double-click handler to info icon for resetting animation
+    const infoIcon = document.querySelector('.info-icon');
+    if (infoIcon) {
+        infoIcon.addEventListener('dblclick', resetAnimationState);
+        infoIcon.title = 'Click: Info | Double-click: Reset animation';
+    }
+    
     console.log('Robot controller initialized');
 });
 
@@ -297,6 +298,23 @@ function toggleInfoPopup() {
         popup.style.display = 'block';
     } else {
         popup.style.display = 'none';
+    }
+}
+
+// Function to reset animation state (for debugging/testing)
+function resetAnimationState() {
+    sessionStorage.removeItem('robotAnimationSeen');
+    console.log('Animation state reset - full animation will play on next page load');
+    
+    // Visual feedback
+    const infoIcon = document.querySelector('.info-icon');
+    if (infoIcon) {
+        infoIcon.style.background = 'rgba(144, 238, 144, 0.9)';
+        infoIcon.textContent = '✓';
+        setTimeout(() => {
+            infoIcon.style.background = 'rgba(255, 255, 255, 0.9)';
+            infoIcon.textContent = 'i';
+        }, 1000);
     }
 }
 

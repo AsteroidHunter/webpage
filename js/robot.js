@@ -120,10 +120,38 @@ class Robot3D {
                 this.robotParts = {};
                 this.identifyRobotParts();
                 
-                // Scale and position the robot
+                // Scale the robot
                 this.robot.scale.set(0.8, 0.8, 0.8);
-                this.robot.position.set(6, -2.5, 0); // Start off-screen to the right
-                this.robot.rotation.y = Math.PI; // Face left for walking
+                
+                // Check if user has seen the animation before
+                const hasSeenAnimation = sessionStorage.getItem('robotAnimationSeen') === 'true';
+                
+                if (hasSeenAnimation) {
+                    // Skip animation - place robot in final position immediately
+                    console.log('User has seen animation before - skipping to final state');
+                    this.robot.position.set(2.5, -2.5, 0); // Final position
+                    this.robot.rotation.y = -Math.PI / 6; // Final rotation (facing camera)
+                    
+                    this.scene.add(this.robot);
+                    this.isLoaded = true;
+                    
+                    // Go directly to speech bubble and choices
+                    this.skipToFinalState();
+                } else {
+                    // First time - play full animation
+                    console.log('First time visitor - playing full animation');
+                    this.robot.position.set(6, -2.5, 0); // Start off-screen to the right
+                    this.robot.rotation.y = Math.PI; // Face left for walking
+                    
+                    this.scene.add(this.robot);
+                    this.isLoaded = true;
+                    
+                    // Mark that user has now seen the animation
+                    sessionStorage.setItem('robotAnimationSeen', 'true');
+                    
+                    // Start the walking animation
+                    this.startWalkingAnimation();
+                }
                 
                 // Enable shadows
                 this.robot.traverse((child) => {
@@ -133,13 +161,7 @@ class Robot3D {
                     }
                 });
                 
-                this.scene.add(this.robot);
-                this.isLoaded = true;
-                
                 console.log('Robot parts identified:', Object.keys(this.robotParts));
-                
-                // Start the walking animation
-                this.startWalkingAnimation();
             }, 
             (progress) => {
                 console.log('Loading progress:', progress);
@@ -439,13 +461,35 @@ class Robot3D {
         }
     }
 
+    skipToFinalState() {
+        console.log('Skipping to final state - showing speech bubble and choices immediately');
+        
+        // Update the speech bubble text immediately (no typing animation)
+        const bubbleText = document.getElementById('bubble-text');
+        if (bubbleText) {
+            const fullText = "Hi! I'm the webmaster around these parts and can help guide you around. First, who are you?";
+            bubbleText.textContent = fullText; // Set text immediately, no typing
+            console.log('Speech bubble text set immediately');
+        }
+        
+        // Show speech bubble immediately and then choices
+        if (window.showSpeechBubbleImmediate) {
+            window.showSpeechBubbleImmediate();
+        } else if (window.robotController) {
+            window.robotController.showSpeechBubbleImmediate();
+        }
+        
+        // Start idle animations immediately
+        this.startIdleAnimations();
+    }
+
     showSpeechBubble() {
         console.log('Robot showSpeechBubble called');
         
         // Update the speech bubble text
         const bubbleText = document.getElementById('bubble-text');
         if (bubbleText) {
-            const fullText = "Hi! I'm Kuda, guardian of this corner of the web. Fellow traveler, who are you?";
+            const fullText = "Hi! I'm the webmaster around these parts and can help guide you around. First, who are you?";
             bubbleText.textContent = ""; // Clear existing text
             console.log('Speech bubble text cleared, starting fast typing...');
             
